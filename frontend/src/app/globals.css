@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/*
+ * ROUVÉ design tokens (Tailwind v4 CSS-first theme).
+ * Values come from Brand Design Guide v1.1. The same colours are mirrored in
+ * src/lib/brand.ts for non-CSS use; a unit test keeps the two in sync.
+ */
+@theme {
+  /* Colour */
+  --color-oxblood: #240002;
+  --color-burgundy-500: #7a1a2e;
+  --color-burgundy-700: #5c0f1f;
+  --color-burgundy-900: #430a16;
+  --color-ivory: #fbf1e6;
+  --color-ivory-200: #f4e8d6;
+  --color-beige: #e8dfcf;
+  --color-gold-300: #e4bb7c;
+  --color-gold: #cea470;
+  --color-gold-700: #7f6428;
+  --color-rose: #c99a9a;
+  --color-rose-100: #ebd3d0;
+  --color-ink: #2b1a1c;
+  --color-ink-muted: #6b5a57;
+
+  /* Status (muted so they never compete with burgundy) */
+  --color-status-ok: #2f4a25;
+  --color-status-ok-bg: #e3ead9;
+  --color-status-low: #7a4e10;
+  --color-status-low-bg: #f4e4c8;
+  --color-status-out: #6b2630;
+  --color-status-out-bg: #ebddde;
+
+  /* Type */
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+
+  /* Shape: sharp, editorial corners */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Layout */
+  --container-page: 80rem; /* 1280px */
+  --tracking-label: 0.2em;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    background: var(--color-ivory);
+  }
+  body {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.005em;
+    color: var(--color-burgundy-700);
+    text-wrap: balance;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 5vw + 1rem, 4rem);
+    font-weight: 400;
+  }
+  h2 {
+    font-size: clamp(1.875rem, 2.5vw + 1rem, 2.5rem);
+    line-height: 1.15;
+  }
+  h3 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+  h4 {
+    font-size: 1.3125rem;
+    line-height: 1.3;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--color-rose-100);
+    color: var(--color-burgundy-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-burgundy-700);
+    outline-offset: 3px;
+  }
+}
+
+/* Small caps-style label used by buttons and navigation (Brand Guide v1.1). */
+@utility text-label {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* Page gutters: 20px mobile, 32px tablet, 48px desktop. */
+@utility gutter {
+  padding-inline: 1.25rem;
+  @media (min-width: 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (min-width: 64rem) {
+    padding-inline: 3rem;
+  }
+}
+
+/* Vertical rhythm between page sections: 64px mobile, 96px desktop. */
+@utility section-y {
+  padding-block: 4rem;
+  @media (min-width: 48rem) {
+    padding-block: 6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

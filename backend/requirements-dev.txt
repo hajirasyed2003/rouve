@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest~=9.2
+httpx2
+aiosqlite~=0.22
+ruff~=0.17
